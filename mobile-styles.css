@@ -1,0 +1,37 @@
+/* set icon properties for navbar toggle icon */
+#navbar-toggle-icon {
+	background-image: url( 'images/menu.svg' );
+    background-size: 60%;
+    background-position: center;
+    }
+@media screen and (max-width: 600px) {
+
+
+.sidebar-close { 
+  dispaly:none!important;
+  width: 0px!important ;
+  z-index: 49!important;
+  transition: 0.3s;
+
+}
+
+.sidebar-open { 
+  z-index: 52!important;
+  transition: 0.3s;
+
+}
+
+.content {
+    left: 0px!important;
+    right: 30px!important;
+    z-index:50
+}
+
+#main-toolbar{
+    z-index:52!important;
+
+    }
+
+
+
+}

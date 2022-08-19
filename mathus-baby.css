@@ -1,0 +1,55 @@
+
+/* changes */
+:root{
+  --primary:  ;
+  --secondry:white ; 
+}
+
+.dropdown-toggle {
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 25px;
+    -webkit-transition: background-color .5s;
+    transition: background-color .5s;
+    font-weight: bold;
+
+}
+#titlebar .nav .dropdown-menu { 
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--secondry);
+    animation: dropdown 90ms cubic-bezier(0, 0.97, 0.2, 0.99) 0ms 1;
+
+}
+.dropdown-menu { 
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--secondry);
+
+}
+.dropdown.open {
+    
+}
+
+#main-toolbar {
+    
+
+    }
+    
+    
+#titlebar, .modal-bar{    
+    background-color: var(--primary);
+}
+.toolbar .nav .dropdown-menu li a, .context-menu .dropdown-menu li a, .codehint-menu .dropdown-menu li a, .inlinemenu-menu .dropdown-menu li a {     
+    font-size: 14px;
+    line-height: 18px;
+    padding: 4px 10px 4px 8px;
+    text-shadow: none;
+    white-space: nowrap;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.project-files-container{ background-color: green;}
+

@@ -1,0 +1,25 @@
+{
+    "name": "mathus-phoenix-addon",
+    "title": "Mathus Phoenix Addon",
+    "description": "Some add-ons for phoenix and brackets.The underlying objective is to improve the usability on non-traditional devices like tablets and mobile phones. And also to incorporate material design principles.",
+    "homepage": "https://github.com/mathewdennis1",
+    "keywords":["addon","colorize","modernize", "upload", "uploader"],
+    "version": ".3000",
+    "author": "Mathew Dennis <mathewdennis693@gmail.com> ",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.24.0"
+    },
+    "i18n": [
+        "en", 
+        "it",
+        "de",
+        "zh",
+        "es",
+        "pl",
+        "sv",
+        "fr",
+        "et",
+        "pt"
+    ]
+}

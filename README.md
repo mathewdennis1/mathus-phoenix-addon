@@ -12,7 +12,7 @@ The underlying objective is to improve the usability on non-traditional devices 
 * Rounded corners. 
 * Animations (menu open animation, hover animation).
 
-### Colorize 
+### Colourize 
 
 * Added red, green, and blue palettes to change the status-bar color.
 
@@ -30,7 +30,7 @@ Ps:: the current implementation of mobile UI is a bit hacky, use it at your own 
 
 Colourize and Modernize can't handle dark mode.
 
-## todo ##
+## Todo ##
 
 * Better integration with the phoenix code base.
 * Add more color palettes.
@@ -49,7 +49,13 @@ will be added soon...
 Colourize and Modernize buttons are available in the view menu.
 
 View menu > Modernize (enable modernize options)
+
 View menu > Colourize (enable colourize and set  default colour (blue))
+
 View menu > Colourize red palette ( change to red color)
+
 View menu > Colourize green palette ( change to green color)
  
+ ## Change log ##
+ 
+* 19-08-2022 initial release

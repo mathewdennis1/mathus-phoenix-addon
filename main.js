@@ -106,7 +106,7 @@ define(function (require, exports, module) {
         let cs = getComputedStyle(r);
 
         if (colour_choice == 'green') {
-            r.style.setProperty('--primary', '#beffbeed');
+            r.style.setProperty('--primary', '#beffbe');
             r.style.setProperty('--secondry', '#f4fff4');
         } else if (colour_choice == 'red') {
             r.style.setProperty('--primary', 'bisque');
@@ -136,7 +136,7 @@ define(function (require, exports, module) {
             .attr('title', 'Toggle navbar')
             .on('click', function () {
               toggleSidebar();
-        // use phoenix sidebar hide function (not working now)
+        // use phoenix sidebar hide function (works now but no animation!)
             //    SidebarView.hide();
             })
             .appendTo($('#main-toolbar .buttons'));
@@ -154,14 +154,21 @@ define(function (require, exports, module) {
         //SidebarView.show();
 
     }
-
+    
+    // The default class for side bar is "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible".
+    // We create 2 aditional classes and use them to swich between open and close states.
+    // It is possible to do the same with  SidebarView function ,but this way we get a cool animation.
+    
     function toggleSidebar() {
         const element = document.getElementById("sidebar");
-        if (element.className !== "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-open") {
-            element.className = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-open";
-           // SidebarView.show();
-        } else if (element.className == "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-open") {
-            element.className = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-close";
+        const style_sidebarOpen = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-open";
+        const style_sidebarClose = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-close";
+        
+        if (element.className !==  style_sidebarOpen ) {
+            element.className = style_sidebarOpen;
+           //SidebarView.show();
+        } else if (element.className == style_sidebarOpen) {
+            element.className = style_sidebarClose;
             //SidebarView.hide();
         }
     }

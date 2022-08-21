@@ -24,6 +24,7 @@ define(function (require, exports, module) {
         ExtensionUtils = brackets.getModule('utils/ExtensionUtils'),
         NodeDomain = brackets.getModule("utils/NodeDomain"),
         SidebarView = brackets.getModule('project/SidebarView'),
+        ThemeManager = brackets.getModule('view/ThemeManager'),
 
         // integrating mobile ui stuff 
         mobile = require('mobile');
@@ -108,15 +109,23 @@ define(function (require, exports, module) {
         if (colour_choice == 'green') {
             r.style.setProperty('--primary', '#beffbe');
             r.style.setProperty('--secondry', '#f4fff4');
+            r.style.setProperty('--sidebar_bg', '#001a00');
+            
         } else if (colour_choice == 'red') {
             r.style.setProperty('--primary', 'bisque');
             r.style.setProperty('--secondry', 'lightyellow');
+            r.style.setProperty('--sidebar_bg', '#190000');
+
         } else if (cs.getPropertyValue('--primary') !== 'lightblue') {
             r.style.setProperty('--primary', 'lightblue');
             r.style.setProperty('--secondry', '#ecf6ff');
+            r.style.setProperty('--sidebar_bg', '#010D2E');
+      
         } else {
             r.style.setProperty('--primary', '');
             r.style.setProperty('--secondry', '');
+            r.style.setProperty('--sidebar_bg','#47484B');
+            r.style.setProperty('--sidebar_bg2','#3C3F41');
         }
     }
 
@@ -201,13 +210,21 @@ define(function (require, exports, module) {
         box: 'border-box'
     });
     //---------------
-
+   
+    function checkForDarkTheme(){
+        // this check is disabled for now. as the function has not yet been added to phoenix.
+        //if (ThemeManager.isInDarkMode() == false ){
+         togglePanel1();
+         colourize_toggle();
+      //  }
+    }
     
     
     AppInit.appReady( function() {
-        togglePanel1();
-        colourize_toggle();
+        
+        checkForDarkTheme();
         
     });
+    
    //--------------
 });

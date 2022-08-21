@@ -2,9 +2,15 @@
 /* changes */
 :root{
   --primary:  ;
-  --secondry:white ; 
+  --secondry:white ;
+  --sidebar_bg: #47484B ;
+  --sidebar_bg2: #3C3F41 ;
+
 }
 
+#titlebar, .modal-bar{    
+    background-color: var(--primary);
+}
 .dropdown-toggle {
     display: inline-block;
     font-size: 14px;
@@ -28,6 +34,37 @@
     background-color: var(--secondry);
 
 }
+#sidebar {
+    background-color: var(--sidebar_bg);
+}
+#project-files-header .btn-alt-quiet {
+    background-color: var(--sidebar_bg);
+ 
+}
+.open-files-container li.selected a {
+ /*   background: var(--sidebar_bg); */
+} 
+
+#working-set-list-container > div:last-child ul{
+    background: var(--sidebar_bg2);
+
+}
+.open-files-container ul{
+        background: var(--sidebar_bg2);
+}
+
+.working-set-header{
+    background: var(--sidebar_bg2);
+
+}
+
+#main-toolbar #plugin-icons-bar{
+    background: var(--sidebar_bg);
+
+}
+#working-set-list-first-pane {
+    background-color: #f89406;
+}
 .dropdown.open {
     
 }
@@ -38,9 +75,7 @@
     }
     
     
-#titlebar, .modal-bar{    
-    background-color: var(--primary);
-}
+
 .toolbar .nav .dropdown-menu li a, .context-menu .dropdown-menu li a, .codehint-menu .dropdown-menu li a, .inlinemenu-menu .dropdown-menu li a {     
     font-size: 14px;
     line-height: 18px;

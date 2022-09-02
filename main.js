@@ -27,7 +27,9 @@ define(function (require, exports, module) {
         ThemeManager = brackets.getModule('view/ThemeManager'),
 
         // integrating mobile ui stuff 
-        mobile = require('mobile');
+        mobile = require('mobile'),
+        colour = require('colour');
+    
 
 
 
@@ -57,7 +59,7 @@ define(function (require, exports, module) {
 
 
     // Register extension commands.
-    CommandManager.register(MENUENTRY_NAME1, COMMAND_ID1, togglePanel1);
+    CommandManager.register(MENUENTRY_NAME1, COMMAND_ID1, colour_man);
     CommandManager.register(MENUENTRY_NAME2, COMMAND_ID2, colourize_toggle);
     CommandManager.register(MENUENTRY_NAME3, COMMAND_ID3, colour_choice_red);
     CommandManager.register(MENUENTRY_NAME4, COMMAND_ID4, colour_choice_green);
@@ -79,7 +81,8 @@ define(function (require, exports, module) {
     }
 
 
-
+    // load mobile stylesheet 
+    ExtensionUtils.loadStyleSheet(module, 'mobile-styles.css');
 
 
 
@@ -102,7 +105,7 @@ define(function (require, exports, module) {
         ExtensionUtils.loadStyleSheet(module, 'mathus-baby.css');
     }
 
-    function colourize_handler(colour_choice) {
+    function colourize_handler(colour_choice, primary, secondry, sidebar_bg) {
         var r = document.querySelector(':root');
         let cs = getComputedStyle(r);
 
@@ -110,22 +113,36 @@ define(function (require, exports, module) {
             r.style.setProperty('--primary', '#beffbe');
             r.style.setProperty('--secondry', '#f4fff4');
             r.style.setProperty('--sidebar_bg', '#001a00');
-            
+
         } else if (colour_choice == 'red') {
             r.style.setProperty('--primary', 'bisque');
             r.style.setProperty('--secondry', 'lightyellow');
             r.style.setProperty('--sidebar_bg', '#190000');
 
-        } else if (cs.getPropertyValue('--primary') !== 'lightblue') {
+
+        } else if (colour_choice =='dark'){
+            r.style.setProperty('--primary', '');
+            r.style.setProperty('--secondry', 'black');
+           // r.style.setProperty('--sidebar_bg', '#00ff43');
+           // r.style.setProperty('--sidebar_bg2', '#3C3F41');
+        
+        }
+        else if  (colour_choice =='manual'){
+            r.style.setProperty('--primary', primary);
+            r.style.setProperty('--secondry', secondry);
+            r.style.setProperty('--sidebar_bg', sidebar_bg);
+        }
+        else if (cs.getPropertyValue('--primary') !== 'lightblue' || colour_choice == 'blue') {
             r.style.setProperty('--primary', 'lightblue');
             r.style.setProperty('--secondry', '#ecf6ff');
             r.style.setProperty('--sidebar_bg', '#010D2E');
-      
-        } else {
+        }
+            // when we turn the thing off 
+        else {
             r.style.setProperty('--primary', '');
             r.style.setProperty('--secondry', '');
-            r.style.setProperty('--sidebar_bg','#47484B');
-            r.style.setProperty('--sidebar_bg2','#3C3F41');
+            r.style.setProperty('--sidebar_bg', '#47484B');
+            r.style.setProperty('--sidebar_bg2', '#3C3F41');
         }
     }
 
@@ -144,9 +161,7 @@ define(function (require, exports, module) {
             .attr('href', '#')
             .attr('title', 'Toggle navbar')
             .on('click', function () {
-              toggleSidebar();
-        // use phoenix sidebar hide function (works now but no animation!)
-            //    SidebarView.hide();
+                toggleSidebar();
             })
             .appendTo($('#main-toolbar .buttons'));
 
@@ -160,32 +175,32 @@ define(function (require, exports, module) {
         mobileUI_plugin_icon.remove();
         UI_mode = 'bigScreen';
         // use phoenix sidebar show function    
-        //SidebarView.show();
+        SidebarView.show();
 
     }
-    
+
     // The default class for side bar is "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible".
     // We create 2 aditional classes and use them to swich between open and close states.
     // It is possible to do the same with  SidebarView function ,but this way we get a cool animation.
-    
+
     function toggleSidebar() {
         const element = document.getElementById("sidebar");
         const style_sidebarOpen = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-open";
         const style_sidebarClose = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-close";
-        
-        if (element.className !==  style_sidebarOpen ) {
+
+        if (element.className !== style_sidebarOpen) {
             element.className = style_sidebarOpen;
-           //SidebarView.show();
+            SidebarView.show();
         } else if (element.className == style_sidebarOpen) {
             element.className = style_sidebarClose;
-            //SidebarView.hide();
+            SidebarView.hide();
         }
     }
-    
+
     function toggleSidebar2() {
         const element = document.getElementById("sidebar");
         element.className = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-open";
-        SidebarView.toggle();
+       // SidebarView.toggle();
     }
     // resize observer-------
     let prevWidth = 0;
@@ -210,21 +225,82 @@ define(function (require, exports, module) {
         box: 'border-box'
     });
     //---------------
-   
-    function checkForDarkTheme(){
+
+    function checkForDarkTheme() {
         // this check is disabled for now. as the function has not yet been added to phoenix.
-        //if (ThemeManager.isInDarkMode() == false ){
-         togglePanel1();
-         colourize_toggle();
-      //  }
+       // if (ThemeManager.getCurrentTheme().dark != true ){
+        togglePanel1();
+        colourize_toggle();
+        setTimeout( dark_handler,6000 );  
+       // }
+    }
+
+
+    AppInit.appReady(function () {
+
+        checkForDarkTheme();
+
+    });
+
+    //--------------
+//test area
+    ThemeManager.on("themeChange", function() {
+                 setTimeout( colour_man,1000 );  
+    });
+
+    function colour_man(){
+       var rgb = colour.rgb_split(read_color());
+       if (check_for_default(rgb)== true ){
+           let rgb2 = colour.rgb_split(read_color('editor_background'));
+           // we disable this for now as rgba colrs are not handled after that turn it to true
+           if (check_for_default(rgb2) == undefined ){
+               colourize_handler('blue');
+               //alert('we are at level-2'+ rgb2);
+           }
+           else if (check_for_default(rgb2) == undefined ){HSLColour_gen(rgb);}
+       }
+         else if (check_for_default(rgb)== undefined) {HSLColour_gen(rgb); }
+         setTimeout( dark_handler,400 );  
     }
     
+    function HSLColour_gen(rgb){
+               var hsl = colour.RGBToHSLObject(rgb[0],rgb[1],rgb[2]);
+               var primary = 'hsl('+ hsl[0]+','+ ' 100% '+','+ ' 85% ' + ')' ;
+               var secondry = 'hsl('+ hsl[0]+','+ ' 100% '+','+ ' 95% ' + ')' ;
+               var sidebar_bg = 'hsl('+ hsl[0]+ ','+ ' 100% '+','+ ' 04% ' +')' ;
+               colourize_handler('manual', primary, secondry, sidebar_bg);
+
+
+               //alert('we are at the end');
+               //alert (hsl);
+               //alert (sidebar_bg);
+               //alert(secondry);
+    }
+  function dark_handler(){
+      var dark = ThemeManager.getCurrentTheme().dark;
+       // alert(dark);
+        if (dark == true ){ colourize_handler('dark'); }
+  }
+//------------------------
+
+
     
-    AppInit.appReady( function() {
-        
-        checkForDarkTheme();
-        
-    });
-    
-   //--------------
+ function read_color(choice) {       
+        var r = document.querySelector('#editor-holder .CodeMirror .CodeMirror-linenumber, .editor-holder .CodeMirror .CodeMirror-linenumber, #editor-holder .CodeMirror .CodeMirror-scroll, .editor-holder .CodeMirror .CodeMirror-scroll, #editor-holder .CodeMirror .CodeMirror-gutters, .editor-holder .CodeMirror .CodeMirror-gutters');
+        let cs = getComputedStyle(r);
+    var colour=cs.getPropertyValue('color');
+    var background_colour=cs.getPropertyValue('background-color');
+
+     //alert('background colr =' +background_colour);
+    //alert (colour);
+    if (choice == 'text_colour' ||choice == undefined  ){return (colour);}
+    else if (choice == 'editor_background' ||choice == 'main_bg'  ){return (background_colour);}
+ }
+ function check_for_default(rgb) {
+     //alert(rgb[0]);
+     if (rgb[0] == '83'&& rgb[1] == '83' && rgb[2] == '83') {/*alert('txt clr is dflt');*/return true ; }
+     else if (rgb[0] == '0'&& rgb[0] == '0' && rgb[0] == '0') {alert('bg clr is dflt');return true ; }
+
+ }
+    //-----------------
 });

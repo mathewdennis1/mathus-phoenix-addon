@@ -58,4 +58,10 @@ View menu > Colourize green palette ( change to green color)
  
  ## Change log ##
  
-* 19-08-2022 initial release
+### 19-08-2022 initial release
+
+### 02-09-2022 update 
+- Theme the UI based on text colour or bg colour.
+- Colours now transition smoothly.
+- New dark theme handler.
+ 

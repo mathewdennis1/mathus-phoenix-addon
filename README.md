@@ -64,4 +64,8 @@ View menu > Colourize green palette ( change to green color)
 - Theme the UI based on text colour or bg colour.
 - Colours now transition smoothly.
 - New dark theme handler.
- 
+
+### 10-09-2022 update
+- better code organization.
+- added a context menu for ui theming.
+- color_man updates.

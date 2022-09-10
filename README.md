@@ -34,8 +34,8 @@ Colourize and Modernize can't handle dark mode.
 
 * Better integration with the phoenix code base.
 * Add more color palettes.
-* Detect and handle dark mode.
-* Move all color palettes to a sub-menu.
+* ~~Detect and handle dark mode.~~
+* ~~Move all color palettes to a sub-menu.~~
 * ~~Better handling of live preview window in mobile mode.~~
 * clean up style sheet and find a way to load variables from the brackets default sheet.
 * Add more features.

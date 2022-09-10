@@ -69,7 +69,7 @@ define(function (require, exports, module) {
     CommandManager.register(MENUENTRY_NAME1, COMMAND_ID1, UITheme.masterControl);
     CommandManager.register(MENUENTRY_NAME2, COMMAND_ID2, colourize_toggle);
     CommandManager.register(MENUENTRY_NAME3, COMMAND_ID3, colour_choice_green);
-    CommandManager.register(MENUENTRY_NAME4, COMMAND_ID4, colour_choice_green);
+    CommandManager.register(MENUENTRY_NAME4, COMMAND_ID4, colour_choice_red);
     CommandManager.register(MENUENTRY_NAME5, COMMAND_ID5, UIsettings.showDialogue);
 
 

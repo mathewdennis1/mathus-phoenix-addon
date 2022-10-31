@@ -1,0 +1,11 @@
+.theme-set {
+    z-index: 9999;
+    width: 60%;
+}
+.searchResultContainer {
+    display: flex;
+    width: 70px;
+    height: 70px;
+    border-color: gray;
+    border-radius: 20px;
+}

@@ -1,0 +1,38 @@
+<div class="theme-set modal">
+    <div
+        style="
+            background-color: var(--primary);
+            -webkit-transition: background-color 1s ease-out;
+        "
+        class="modal-header">
+        <h1 class="dialog-title">{{Strings.SNIPPET_SEARCH}}</h1>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <h3>Please input a keyword to search</h3>
+                <input type="search" />
+            </div>
+
+            <div class="searchResultContainer">
+                <div class="searchlist">
+                    <p>test</p>
+                </div>
+                <div class="searchcontent">
+                    <p>test</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="dialog-button btn" data-button-id="cancel">
+            {{Strings.CANCEL}}
+        </button>
+        <button
+            class="dialog-button btn primary"
+            id="theme-settings-done-btn"
+            data-button-id="save">
+            {{Strings.DONE}}
+        </button>
+    </div>
+</div>

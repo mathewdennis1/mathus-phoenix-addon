@@ -32,7 +32,8 @@ define(function (require, exports, module) {
         mobile = require('mobileUI'),
         UITheme = require('UITheme/UITheme'),
         colour = require('UITheme/colour'),
-        UIsettings = require('UITheme/UIsettings');
+        UIsettings = require('UITheme/UIsettings'),
+        snippetSearch = require('snippetSearch/snippet');
     
     // let UIThemeSettings = require('UITheme/UIThemeSettings');
 
@@ -53,6 +54,7 @@ define(function (require, exports, module) {
     var COMMAND_ID3 = 'mathus.phoenixAddon.colourize.red';
     var COMMAND_ID4 = 'mathus.phoenixAddon.colourize.green';
     var COMMAND_ID5 = 'mathus.phoenixAddon.uithemesettings.open';
+    var COMMAND_ID6 = 'mathus.phoenixAddon.snippetSearch';
 
 
 
@@ -61,6 +63,7 @@ define(function (require, exports, module) {
     const MENUENTRY_NAME3 = 'Colourize red palette';
     const MENUENTRY_NAME4 = 'Colourize green palette';
     const MENUENTRY_NAME5 = 'UI Theme Settings';
+    const MENUENTRY_NAME6 = 'Snippet Search';
 
 
 
@@ -71,6 +74,7 @@ define(function (require, exports, module) {
     CommandManager.register(MENUENTRY_NAME3, COMMAND_ID3, colour_choice_red);
     CommandManager.register(MENUENTRY_NAME4, COMMAND_ID4, colour_choice_green);
     CommandManager.register(MENUENTRY_NAME5, COMMAND_ID5, UIsettings.showDialogue);
+    CommandManager.register(MENUENTRY_NAME6, COMMAND_ID6, snippetSearch.showSnippetSearch );
 
 
     if (menu !== undefined) {
@@ -80,6 +84,7 @@ define(function (require, exports, module) {
         menu.addMenuItem(COMMAND_ID3);
         menu.addMenuItem(COMMAND_ID4);
         menu.addMenuItem(COMMAND_ID5, 'Ctrl-Alt-t', 'AFTER', 'mathus.phoenixAddon.modernize');
+        menu.addMenuItem(COMMAND_ID6);
 
     }
     //'view.themesOpenSetting'

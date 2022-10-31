@@ -22,5 +22,5 @@ define({
     "BUTTON_NO": "No",
 
     //SNIPPET SEARCH 
-    "SNIPPET_SEARCH": "Snippet Search"
+    "SNIPPET_SEARCH": "Snippet Search",
  });

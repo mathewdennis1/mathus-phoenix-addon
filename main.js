@@ -5,7 +5,6 @@
  * @license  MIT
  */
 define(function (require, exports, module) {
-    'use strict';
 
     // Get dependencies.
     var Async = brackets.getModule('utils/Async'),

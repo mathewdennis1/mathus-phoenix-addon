@@ -8,11 +8,12 @@ define(function (require, exports, module) {
         quickSerchTemplete  = require("text!html/UIThemeSettings.html"),
         UITheme  = require("UITheme/UITheme");
 //------------------------------------
-     let _                   = brackets.getModule("thirdparty/lodash"),
+     let _                  = brackets.getModule("thirdparty/lodash"),
         Mustache            = brackets.getModule("thirdparty/mustache/mustache"),
         ViewCommandHandlers = brackets.getModule("view/ViewCommandHandlers"),
         settingsTemplate    = brackets.getModule("text!htmlContent/themes-settings.html"),
         PreferencesManager  = brackets.getModule("preferences/PreferencesManager"),
+        ExtensionUtils      = brackets.getModule('utils/ExtensionUtils'),
         prefs               = PreferencesManager.getExtensionPrefs("UIthemes");
     
     
@@ -69,16 +70,16 @@ define(function (require, exports, module) {
         });
         
          themes.unshift({
-            displayName: 'Blue  theme',
+            displayName: 'Phoenix Blue',
             name: 'blue'
         });
                  themes.unshift({
-            displayName: 'Green theme',
+            displayName: 'Grazzy Green',
             name:'green'
         });
         
                  themes.unshift({
-            displayName: 'Red theme',
+            displayName: 'Radient Red',
             name: 'red'
         });
         

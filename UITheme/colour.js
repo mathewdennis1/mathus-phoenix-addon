@@ -1,7 +1,12 @@
+
 define(function (require, exports, module) {
     
-// get rgb convert it to arry then to hex
+     var    ExtensionUtils = brackets.getModule('utils/ExtensionUtils');
     
+ //initialize variables
+let R, r, G, g, B, b;
+   
+// get rgb convert it to arry then to hex
 function rgb_to_hex_converter(rgb ){
    // alert(rgb);//works this much
    var splited= rgb_split(rgb) ;
@@ -34,7 +39,7 @@ function componentToHex(c) {
   let numb = Number(c);
   let hex = numb.toString(16);
   //alert(hex);
-  return hex.length == 1 ? "0" + hex : hex;
+  return hex.length === 1 ? "0" + hex : hex;
 }
 
 
@@ -43,14 +48,14 @@ function componentToHex(c) {
 // conver rgb object to a css readable property 
 // and does color transforms (optional)
   function   rgb_gen(r,g,b, transform_to ) {
-        if(transform_to == 'primary'){
+        if(transform_to === 'primary'){
             //do that part 
             R = r + (0.15 * (255 - r)); G = g + (0.15 * (255 - g)); B = b + (0.15 * (255 - b));
         }
-        else if (transform_to == 'secondry'){
+        else if (transform_to === 'secondry'){
             R = r + (0.75 * (255 - r)); G = g + (0.75 * (255 - g)); B = b + (0.75 * (255 - b));
         }
-        else if (transform_to == 'sidebar_bg'){
+        else if (transform_to === 'sidebar_bg'){
             R= r/4 ;G=g/4; B=g/4 ;
         }
         else{ r=R; g=G ; b=B;
@@ -64,7 +69,7 @@ function componentToHex(c) {
     
    // rgb to hsl 
     // there is an error in s value
-   const RGBToHSLObject = (r, g, b) => {
+   function RGBToHSLObject(r, g, b) {
   r /= 255;
   g /= 255;
   b /= 255;
@@ -74,38 +79,9 @@ function componentToHex(c) {
   return [
      Math.round(   60 * h < 0 ? 60 * h + 360 : 60 * h    ),
      Math.round(   100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0)  ),
-     Math.round(  (100 * (2 * l - s)) / 2                 ),
+     Math.round(  (100 * (2 * l - s)) / 2                 )
   ];
-};
-/// code needs testing  
-    
-function LightenDarkenColor(col,amt) {
-    var usePound = false;
-    if ( col[0] == "#" ) {
-        col = col.slice(1);
-        usePound = true;
-    }
-
-    var num = parseInt(col,16);
-
-    var r = (num >> 16) + amt;
-
-    if ( r > 255 ) r = 255;
-    else if  (r < 0) r = 0;
-
-    var b = ((num >> 8) & 0x00FF) + amt;
-
-    if ( b > 255 ) b = 255;
-    else if  (b < 0) b = 0;
-
-    var g = (num & 0x0000FF) + amt;
-
-    if ( g > 255 ) g = 255;
-    else if  ( g < 0 ) g = 0;
-
-    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
 }
-   
 
     EventDispatcher.makeEventDispatcher(exports);
 

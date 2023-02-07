@@ -1,6 +1,4 @@
 define(function (require, exports, module) {
-    'use strict';
-
     // Get dependencies.
     var Async = brackets.getModule('utils/Async'),
         Menus = brackets.getModule('command/Menus'),
@@ -37,29 +35,29 @@ define(function (require, exports, module) {
         var r = document.querySelector(':root');
         let cs = getComputedStyle(r);
 
-        if (colour_choice == 'green') {
+        if (colour_choice === 'green') {
             r.style.setProperty('--primary', '#beffbe');
             r.style.setProperty('--secondry', '#f4fff4');
             r.style.setProperty('--sidebar_bg', '#001a00');
 
-        } else if (colour_choice == 'red') {
+        } else if (colour_choice === 'red') {
             r.style.setProperty('--primary', 'bisque');
             r.style.setProperty('--secondry', 'lightyellow');
             r.style.setProperty('--sidebar_bg', '#190000');
 
 
-        } else if (colour_choice == 'dark') {
-            r.style.setProperty('--primary', '');
+        } else if (colour_choice === 'dark') {
+            r.style.setProperty('--primary', 'black');
             r.style.setProperty('--secondry', 'black');
             // r.style.setProperty('--sidebar_bg', '#00ff43');
             // r.style.setProperty('--sidebar_bg2', '#3C3F41');
 
-        } else if (colour_choice == 'manual') {
+        } else if (colour_choice === 'manual') {
             r.style.setProperty('--primary', primary);
             r.style.setProperty('--secondry', secondry);
             r.style.setProperty('--sidebar_bg', sidebar_bg);
 
-        } else if (cs.getPropertyValue('--primary') !== 'lightblue' || colour_choice == 'blue' || colour_choice == 'Default') {
+        } else if (cs.getPropertyValue('--primary') !== 'lightblue' || colour_choice === 'blue' || colour_choice === 'Default') {
             r.style.setProperty('--primary', 'lightblue');
             r.style.setProperty('--secondry', '#ecf6ff');
             r.style.setProperty('--sidebar_bg', '#010D2E');
@@ -86,19 +84,19 @@ define(function (require, exports, module) {
 
 
     function colour_man() {
-        //if (passthrough== true ){colourize_handler('$colour');}
-        if (auto_UI_theming == true || auto_UI_theming == undefined) {
+        //if (passthrough=== true ){colourize_handler('$colour');}
+        if (auto_UI_theming === true || auto_UI_theming === undefined) {
             var rgb = colour.rgb_split(read_color());
-            if (check_for_default(rgb) == true) {
+            if (check_for_default(rgb) === true) {
                 let rgb2 = colour.rgb_split(read_color('editor_background'));
                 // we disable this for now as rgba colrs are not handled after that turn it to true
-                if (check_for_default(rgb2) == undefined) {
+                if (check_for_default(rgb2) === undefined) {
                     colourize_handler('blue');
                     //alert('we are at level-2'+ rgb2);
-                } else if (check_for_default(rgb2) == undefined) {
+                } else if (check_for_default(rgb2) === undefined) {
                     HSLColour_gen(rgb);
                 }
-            } else if (check_for_default(rgb) == undefined) {
+            } else if (check_for_default(rgb) === undefined) {
                 HSLColour_gen(rgb);
             }
         } else if (user_selected_UItheme) {
@@ -130,7 +128,7 @@ define(function (require, exports, module) {
     function dark_handler() {
         var dark = ThemeManager.getCurrentTheme().dark;
         // alert(dark);
-        if (dark == true) {
+        if (dark === true) {
             colourize_handler('dark');
         }
     }
@@ -146,19 +144,19 @@ define(function (require, exports, module) {
 
         //alert('background colr =' +background_colour);
         //alert (colour);
-        if (choice == 'text_colour' || choice == undefined) {
+        if (choice === 'text_colour' || choice === undefined) {
             return (colour);
-        } else if (choice == 'editor_background' || choice == 'main_bg') {
+        } else if (choice === 'editor_background' || choice === 'main_bg') {
             return (background_colour);
         }
     }
 
     function check_for_default(rgb) {
         //alert(rgb[0]);
-        if (rgb[0] == '83' && rgb[1] == '83' && rgb[2] == '83') {
+        if (rgb[0] === '83' && rgb[1] === '83' && rgb[2] === '83') {
             /*alert('txt clr is dflt');*/
             return true;
-        } else if (rgb[0] == '0' && rgb[0] == '0' && rgb[0] == '0') {
+        } else if (rgb[0] === '0' && rgb[0] === '0' && rgb[0] === '0') {
             alert('bg clr is dflt');
             return true;
         }
@@ -199,7 +197,7 @@ define(function (require, exports, module) {
 
 
    
-    // -----------------------------------------------------------------
+// -----------------------------------------------------------------
     
     EventDispatcher.makeEventDispatcher(exports);
 

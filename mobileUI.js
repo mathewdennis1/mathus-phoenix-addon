@@ -4,7 +4,6 @@
 
 
 define(function (require, exports, module) {
-    'use strict';
     
      // Get dependencies.
      var   SidebarView = brackets.getModule('project/SidebarView'),
@@ -61,10 +60,10 @@ define(function (require, exports, module) {
         const style_sidebarOpen = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-open";
         const style_sidebarClose = "sidebar panel quiet-scrollbars horz-resizable right-resizer collapsible sidebar-close";
 
-        if (element.className != style_sidebarOpen) {
+        if (element.className !== style_sidebarOpen) {
             element.className = style_sidebarOpen;
             SidebarView.show();
-        } else if (element.className == style_sidebarOpen) {
+        } else if (element.className === style_sidebarOpen) {
             element.className = style_sidebarClose;
             SidebarView.hide();
         }
@@ -80,14 +79,14 @@ define(function (require, exports, module) {
 
     const observer = new ResizeObserver(entries => {
         for (const entry of entries) {
-            const width = entry.borderBoxSize?. [0].inlineSize;
+            const width = window.innerWidth;
             if (typeof width === 'number' && width !== prevWidth) {
                 prevWidth = width;
                 // our code to execute when we have the change 
                 var w = window.innerWidth;
                 if (w < 600 && UI_mode !== 'mobile') {
                     enable_mobileUI();
-                } else if (w > 600 && UI_mode == 'mobile') {
+                } else if (w > 600 && UI_mode === 'mobile') {
                     disable_mobileUI();
                 }
             }

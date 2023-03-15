@@ -1,7 +1,8 @@
 
 define(function (require, exports, module) {
     
-     var    ExtensionUtils = brackets.getModule('utils/ExtensionUtils');
+     var    ExtensionUtils = brackets.getModule('utils/ExtensionUtils'),
+             EventDispatcher = brackets.getModule("utils/EventDispatcher");
     
  //initialize variables
 let R, r, G, g, B, b;

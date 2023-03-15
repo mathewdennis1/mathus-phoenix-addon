@@ -1,37 +1,59 @@
 /* changes */
 :root{
-  --primary:  ;
-  --secondry:white ;
-  --sidebar_bg: #47484B ;
-  --sidebar_bg2: #3C3F41 ;
-
+ /* --primary:  ;
+  --secondry: white ;
+  --sidebar_bg: #47484B ; */
+  --sidebar_bg2: #3C3F41 ; 
+    
+   --hue: 224  ;
+    
+   --lightnessSidebar:  5% ;
+   --lightnessPrimary; 87% ;
+   --lightnessSecondary: 95% ;
+ 
+ --transparency: 1 ;
+ --transparency_disable: 1 ;
+    
+ --sidebar_bg: hsla( var(--hue) ,  96%, var(--lightnessSidebar)   ,  var(--transparency_disable)  );
+ --primary:    hsla( var(--hue) ,  97%, var(--lightnessPrimary)   ,  var(--transparency_disable)  );
+ --secondary:  hsla( var(--hue) ,  70%, var(--lightnessSecondary) ,  var(--transparency)  );
 }
 
-#titlebar, .modal-bar{    
+#titlebar, .modal-bar {    
     background-color: var(--primary);
     -webkit-transition: background-color 2s ease-out;
 
+}
+
+.toolbar .nav .dropdown-toggle {
+    margin: 5px 0px 7px 0px;
+    padding: 2px 8px 2px 8px;
+    
+    
 }
 .dropdown-toggle {
     display: inline-block;
     font-size: 14px;
     padding: 10px;
-    border-radius: 25px;
-    font-weight: bold;
+    border-radius: 6px;
 
 }
 #titlebar .nav .dropdown-menu { 
     padding: 5px;
     border-radius: 10px;
-    background-color: var(--secondry);
+    background-color: var(--secondary);
     -webkit-animation: dropdown 90ms cubic-bezier(0, 0.97, 0.2, 0.99) 0ms 1;
     animation: dropdown 90ms cubic-bezier(0, 0.97, 0.2, 0.99) 0ms 1;
+    backdrop-filter: blur(5px);
+
 
 }
 .dropdown-menu { 
     padding: 5px;
     border-radius: 10px;
-    background-color: var(--secondry);
+    background-color: var(--secondary);
+    backdrop-filter: blur(5px);
+
 
 }
 #sidebar {

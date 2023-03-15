@@ -2,6 +2,8 @@ define({
     
     "CURRENT_THEME": "choose a colour palette",
     "USE_THEME_SCROLLBARS": "Theme Ui based on current theme",
+     "BLUR_UI": "Blur System UI",
+    
     "FONT_SIZE": "Font Size",
     "FONT_FAMILY": "Font Family",
     "THEMES_SETTINGS": "UI Themes Settings",

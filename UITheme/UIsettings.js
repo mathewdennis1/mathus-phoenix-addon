@@ -1,6 +1,7 @@
 define(function (require, exports, module) {
 
     var Dialogs             = brackets.getModule("widgets/Dialogs"),
+        //EventDispatcher = brackets.getModule("utils/EventDispatcher"),
         //Strings             = brackets.getModule("strings"),
        // newProject          = brackets.getModule("text!assets/new-project/new-project-website.html"),
         
@@ -29,7 +30,8 @@ define(function (require, exports, module) {
         themeScrollbars: true,
         theme: SYSTEM_DEFAULT_THEME,
         lightTheme: "light-theme",
-        darkTheme: "dark-theme"
+        darkTheme: "dark-theme",
+        blurUI: false
     };
 
      
@@ -103,13 +105,23 @@ define(function (require, exports, module) {
             .tab("show");
 
         $template
-            .on("change", "[data-target]:checkbox", function () {
+            .on("change", "[data-target='themeScrollbars']", function () {
                 var $target = $(this);
                //alert($target.val(1));
                 var attr = $target.attr("data-target");
                 var return_value = $target.is(":checked");
                 newSettings[attr] = return_value;
                 UITheme.enable_auto_UI_theming(return_value);
+                UITheme.colour_man();
+            })
+        
+         .on("change", "[data-target='blurUI']", function () {
+                var $target = $(this);
+               //alert($target.val(1));
+                var attr = $target.attr("data-target");
+                var return_value = $target.is(":checked");
+                newSettings[attr] = return_value;
+                UITheme.enable_blurUI(return_value);
                 UITheme.colour_man();
             })
             .on("input", "[data-target='fontSize']", function () {
@@ -170,8 +182,10 @@ define(function (require, exports, module) {
         });
     }
     
-    
-    
+
+    prefs.definePreference("blurUI", "boolean", DEFAULTS.blurUI, {
+        description: Strings.BLUR_UI
+    });
     
     EventDispatcher.makeEventDispatcher(exports);
 

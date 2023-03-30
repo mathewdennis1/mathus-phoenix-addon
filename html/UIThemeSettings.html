@@ -24,16 +24,16 @@
             <div
                 style="width: 60%; display: flex; justify-content: center"
                 class="control-group">
-                <label class="control-label" >{{Strings.USE_THEME_SCROLLBARS}}:</label>
+                <label class="control-label" >{{Strings.AUTO_UI_THEMING}}:</label>
                 <div class="controls">
-                    {{#settings.themeScrollbars}}
+                    {{#settings.autoUItheming}}
                     <input
                         type="checkbox"
-                        data-target="themeScrollbars"
+                        data-target="autoUItheming"
                         checked />
-                    {{/settings.themeScrollbars}} {{^settings.themeScrollbars}}
-                    <input type="checkbox" data-target="themeScrollbars" />
-                    {{/settings.themeScrollbars}}
+                    {{/settings.autoUItheming}} {{^settings.autoUItheming}}
+                    <input type="checkbox" data-target="autoUItheming" />
+                    {{/settings.autoUItheming}}
                 </div>
             </div>
             <div>

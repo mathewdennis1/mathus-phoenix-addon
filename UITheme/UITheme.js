@@ -27,7 +27,7 @@ define(function (require, exports, module) {
 
     // initialize variables
      
-    let auto_UI_theming = prefs.get('themeScrollbars');
+    let auto_UI_theming = prefs.get('autoUItheming');
     let user_selected_UItheme = prefs.get('theme');
     let blur_UI = prefs.get('blurUI');
     
@@ -39,20 +39,20 @@ define(function (require, exports, module) {
         let r = document.querySelector(':root');
         let cs = getComputedStyle(r);
 
-        if (colour_choice == 'green') {
+        if (colour_choice === 'green') {
             r.style.setProperty('--hue', '120');
            /* r.style.setProperty('--primary', '#beffbe');
             r.style.setProperty('--secondary', '#f4fff4');
             r.style.setProperty('--sidebar_bg', '#001a00'); */
 
-        } else if (colour_choice == 'red') {
+        } else if (colour_choice === 'red') {
             r.style.setProperty('--hue', '0');
           /*  r.style.setProperty('--primary', 'bisque');
             r.style.setProperty('--secondary', 'lightyellow');
             r.style.setProperty('--sidebar_bg', '#190000'); */
 
 
-        } else if (colour_choice == 'dark') {
+        } else if (colour_choice === 'dark') {
             //r.style.setProperty('--primary', 'black');
             //r.style.setProperty('--secondary', 'rgba(0,0,0,0.5)');
             // r.style.setProperty('--sidebar_bg', '#00ff43');
@@ -63,7 +63,7 @@ define(function (require, exports, module) {
             r.style.setProperty('--secondary', secondary);
             r.style.setProperty('--sidebar_bg', sidebar_bg);
 
-        } else if (cs.getPropertyValue('--primary') !== 'lightblue' || colour_choice === 'blue' || colour_choice == 'Default') {
+        } else if (cs.getPropertyValue('--primary') !== 'lightblue' || colour_choice === 'blue' || colour_choice === 'Default') {
             r.style.setProperty('--hue', '224');
             /* r.style.setProperty('--primary', 'lightblue');
             r.style.setProperty('--secondary', '#ecf6ff');
@@ -169,33 +169,7 @@ define(function (require, exports, module) {
             r.style.setProperty('--transparency', ' 1 ');
         }
  }
-  /*  function dark_handler() {
-        let r = document.querySelector(':root');
-        let cs = getComputedStyle(r);
-        let isDark = ThemeManager.getCurrentTheme().dark;
-        
-        // alert(dark);
-        if (isDark === true) {
-            savedPrimary = cs.getPropertyValue('--primary');
-            savedSecondary = cs.getPropertyValue('--secondary');
-            savedSidebar_bg = cs.getPropertyValue('--sidebar_bg');
-            colourize_handler('dark');
-        }
-        else if (isDark === false && isDark !== lastDarkState ) {
-            //alert(savedPrimary + savedSecondary + savedSidebar_bg);
-           colourize_handler('manual', savedPrimary, savedSecondary, savedSidebar_bg);
-        }
-         
-        // this is to handle dark mode when auto ui theming is disabled and user use ui theme settings to change the ui theme 
-        else if (isDark === false && isDark === lastDarkState) {
-            savedPrimary = cs.getPropertyValue('--primary');
-            savedSecondary = cs.getPropertyValue('--secondary');
-            savedSidebar_bg = cs.getPropertyValue('--sidebar_bg');
-        }
-        lastDarkState = isDark ;  
-    }
-    
-    */
+
     //------------------------
 
 

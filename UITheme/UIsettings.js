@@ -6,7 +6,7 @@ define(function (require, exports, module) {
        // newProject          = brackets.getModule("text!assets/new-project/new-project-website.html"),
         
         Strings  = require("UITheme/Strings"),
-        quickSerchTemplete  = require("text!html/UIThemeSettings.html"),
+        settingsTemplete  = require("text!html/UIThemeSettings.html"),
         UITheme  = require("UITheme/UITheme");
 //------------------------------------
      let _                  = brackets.getModule("thirdparty/lodash"),
@@ -15,8 +15,8 @@ define(function (require, exports, module) {
         settingsTemplate    = brackets.getModule("text!htmlContent/themes-settings.html"),
         PreferencesManager  = brackets.getModule("preferences/PreferencesManager"),
         ExtensionUtils      = brackets.getModule('utils/ExtensionUtils'),
-        prefs               = PreferencesManager.getExtensionPrefs("UIthemes");
-    
+        prefs               = PreferencesManager.getExtensionPrefs("UIthemes"),
+        EventDispatcher     = brackets.getModule("utils/EventDispatcher");
     
     // strings.THEME_SETTINGS = 'theme settings';
      let loadedThemes = {};
@@ -27,7 +27,7 @@ define(function (require, exports, module) {
      * Object with all default values that can be configure via the settings UI
      */
     const DEFAULTS = {
-        themeScrollbars: true,
+        autoUItheming: true,
         theme: SYSTEM_DEFAULT_THEME,
         lightTheme: "light-theme",
         darkTheme: "dark-theme",
@@ -38,7 +38,7 @@ define(function (require, exports, module) {
     /**
      * Cached html settings jQuery object for easier processing when opening the settings dialog
      */
-    var $settings = $(quickSerchTemplete).addClass("themeSettings");
+    var $settings = $(settingsTemplete).addClass("themeSettings");
 
     /**
      * @private
@@ -52,10 +52,6 @@ define(function (require, exports, module) {
         Object.keys(DEFAULTS).forEach(function (key) {
             result[key] = prefs.get(key);
         });
-
-        result.fontFamily = ViewCommandHandlers.getFontFamily();
-        result.fontSize   = ViewCommandHandlers.getFontSize();
-        result.validFontSizeRegExp = ViewCommandHandlers.validFontSizeRegExp;
         return result;
     }
     
@@ -105,7 +101,7 @@ define(function (require, exports, module) {
             .tab("show");
 
         $template
-            .on("change", "[data-target='themeScrollbars']", function () {
+            .on("change", "[data-target='autoUItheming']", function () {
                 var $target = $(this);
                //alert($target.val(1));
                 var attr = $target.attr("data-target");
@@ -124,23 +120,6 @@ define(function (require, exports, module) {
                 UITheme.enable_blurUI(return_value);
                 UITheme.colour_man();
             })
-            .on("input", "[data-target='fontSize']", function () {
-                var target = this;
-                var targetValue = $(this).val();
-                var $btn = $("#theme-settings-done-btn")[0];
-
-                // Make sure that the font size is expressed in terms
-                // we can handle (px or em). If not, 'done' button is
-                // disabled until input has been corrected.
-
-                if (target.checkValidity() === true) {
-                    $btn.disabled = false;
-                    newSettings["fontSize"] = targetValue;
-                } else {
-                    $btn.disabled = true;
-                }
-            })
-          
         
             .on("change", "select", function () {
                 var $target = $(":selected", this);
@@ -182,7 +161,9 @@ define(function (require, exports, module) {
         });
     }
     
-
+    prefs.definePreference("autoUItheming", "boolean", DEFAULTS.autoUItheming, {
+        description: Strings.AUTO_UI_THEMING
+    });
     prefs.definePreference("blurUI", "boolean", DEFAULTS.blurUI, {
         description: Strings.BLUR_UI
     });

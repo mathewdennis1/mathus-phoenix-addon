@@ -28,7 +28,7 @@ Ps:: the current implementation of mobile UI is a bit hacky, use it at your own 
 
 ## Bugs ##
 
-Colourize and Modernize can't handle dark mode.
+auto ui theming is broken for now
 
 ## Todo ##
 
@@ -46,7 +46,7 @@ will be added soon...
 
 ## How to use ##
 
-Colourize and Modernize buttons are available in the view menu.
+view menu > UI Theme Settings
 
 View menu > Modernize (enable modernize options)
 
@@ -69,3 +69,8 @@ View menu > Colourize green palette ( change to green color)
 - better code organization.
 - added a context menu for ui theming.
 - color_man updates.
+
+### 30-03-2023 update
+- better code organization.
+- massive code re-write.
+- blur ui (only for context menu for now)
